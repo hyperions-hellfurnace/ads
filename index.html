@@ -9,12 +9,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #119c34;
+            background-color: #d9ead3; /* Changed background color */
             color: #032b0d;
             text-align: center;
         }
         header {
-            background-color: #119c34;
+            background-color: #d9ead3; /* Changed header background color */
             padding: 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
@@ -37,7 +37,7 @@
             background-color: transparent;
         }
         footer {
-            background-color: #119c34;
+            background-color: #d9ead3; /* Changed footer background color */
             padding: 10px 0;
             position: relative;
             bottom: 0;
@@ -47,7 +47,28 @@
         footer p {
             margin: 0;
         }
+        #adblock-warning {
+            display: none; /* Initially hidden */
+            background-color: #ffcc00;
+            padding: 15px;
+            margin: 20px;
+            border: 1px solid #ff9900;
+        }
     </style>
+    <script>
+        window.onload = function() {
+            var adblockTest = document.createElement('div');
+            adblockTest.innerHTML = '&nbsp;';
+            adblockTest.className = 'adsbox';
+            document.body.appendChild(adblockTest);
+            window.setTimeout(function() {
+                if (adblockTest.offsetHeight === 0) {
+                    document.getElementById('adblock-warning').style.display = 'block';
+                }
+                adblockTest.remove();
+            }, 100);
+        }
+    </script>
 </head>
 <body>
 
@@ -56,8 +77,16 @@
     <p>Click on an ad to support us.</p>
 </header>
 
+<div id="adblock-warning">
+    <p>It seems you are using an adblocker. Please consider disabling it to support our development.</p>
+</div>
+
 <div class="ad-container">
-    <div id="frame" style="width: 100%;"><iframe data-aa='2367881' src='//acceptable.a-ads.com/2367881' style='border:0px; padding:0; width:100%; height:100%; overflow:hidden; background-color: transparent;'></iframe><a style="display: block; text-align: right; font-size: 12px" id="frame-link" href="https://aads.com/campaigns/new/?source_id=2367881&source_type=ad_unit&partner=2367881">Advertise here</a></div></div>
+    <div id="frame" style="width: 100%;">
+        <iframe data-aa='2367881' src='//acceptable.a-ads.com/2367881' style='border:0px; padding:0; width:100%; height:100%; overflow:hidden; background-color: transparent;'></iframe>
+        <a style="display: block; text-align: right; font-size: 12px" id="frame-link" href="https://aads.com/campaigns/new/?source_id=2367881&source_type=ad_unit&partner=2367881">Advertise here</a>
+    </div>
+</div>
 
 <footer>
     <p>&copy; 2024 IonAds. All Rights Reserved.</p>
